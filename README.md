@@ -7,4 +7,5 @@
 项目中的101规约只限平衡式报文解析。
 具体的规约文件请参照docs目录的文件。
 ## 联系
-E-mail : mr.zahngyu.me@qq.cpm
+E-mail : mr.zhangyu.me@qq.cpm
+QQ : 1600351631
