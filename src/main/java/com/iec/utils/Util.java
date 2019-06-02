@@ -1,11 +1,15 @@
 package com.iec.utils;
 
+import com.sun.source.tree.ForLoopTree;
+import org.omg.IOP.IOR;
+
 import java.io.*;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -676,7 +680,7 @@ public class Util {
     /**
      * 解析地址域
      *
-     * @param low 第一个地址
+     * @param low  第一个地址
      * @param high 第二个地址
      * @return
      */
@@ -686,5 +690,65 @@ public class Util {
         String highString = String.format("%02X", high);
 
         return highString + lowString + "H" + "\n";
+    }
+
+    public static String getAddressStr(int address) {
+        String addressStr = String.format("%04X", address);
+        return addressStr.substring(2, 4) + addressStr.substring(0, 2);
+    }
+
+    public static String getInfoStr(int info, int length) {
+        StringBuilder builder = new StringBuilder();
+        String infoFormat = "%0" + 2 * length + "X";
+        String infoStr = String.format(infoFormat, info);
+        for (int i = 0; i < length; i++) {
+            builder.append(infoStr.substring(i * 2, (i + 1) * 2));
+        }
+        return builder.toString();
+    }
+
+    public static String date2HStr(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        StringBuilder builder = new StringBuilder();
+        String milliSecond = String.format("%04X", (calendar.get(Calendar.SECOND) * 1000) + calendar.get(Calendar.MILLISECOND));
+        builder.append(milliSecond.substring(2, 4));
+        builder.append(milliSecond.substring(0, 2));
+        builder.append(String.format("%02X", calendar.get(Calendar.MINUTE) & 0x3F));
+        builder.append(String.format("%02X", calendar.get(Calendar.HOUR_OF_DAY) & 0x1F));
+        int week = calendar.get(Calendar.DAY_OF_WEEK);
+        if (week == Calendar.SUNDAY)
+            week = 7;
+        else week--;
+        builder.append(String.format("%02X", (week << 5) + (calendar.get(Calendar.DAY_OF_MONTH) & 0x1F)));
+        builder.append(String.format("%02X", calendar.get(Calendar.MONTH) + 1));
+        builder.append(String.format("%02X", calendar.get(Calendar.YEAR) - 2000));
+        return builder.toString();
+    }
+
+    public static long add2long(int address) {
+        int addressLong = ((address & 0xff00) >> 8) + (address & 0x00ff);
+        return addressLong % 256;
+    }
+
+    public static long CP56Time2Long(Date dateTime) {
+        long sum = 0;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateTime);
+        StringBuilder builder = new StringBuilder();
+        long milliSecond = (calendar.get(Calendar.SECOND) * 1000) + calendar.get(Calendar.MILLISECOND);
+        sum += ((milliSecond & 0xff00) >> 8) % 256;
+        sum += (milliSecond & 0x00ff) % 256;
+        sum += (calendar.get(Calendar.MINUTE) & 0x3F) % 256;
+        sum += (calendar.get(Calendar.HOUR_OF_DAY) & 0x1F) % 256;
+
+        int week = calendar.get(Calendar.DAY_OF_WEEK);
+        if (week == Calendar.SUNDAY)
+            week = 7;
+        else week--;
+        sum += ((week << 5) + (calendar.get(Calendar.DAY_OF_MONTH) & 0x1F)) % 256;
+        sum += (calendar.get(Calendar.MONTH) + 1) % 256;
+        sum += (calendar.get(Calendar.YEAR) - 2000) % 256;
+        return sum;
     }
 }
