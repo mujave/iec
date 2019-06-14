@@ -1,7 +1,5 @@
 package com.iec.utils;
 
-import com.sun.source.tree.ForLoopTree;
-import org.omg.IOP.IOR;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -695,6 +693,10 @@ public class Util {
     public static String getAddressStr(int address) {
         String addressStr = String.format("%04X", address);
         return addressStr.substring(2, 4) + addressStr.substring(0, 2);
+    }
+    public static String getAddressStr3(int address) {
+        String addressStr = String.format("%06X", address);
+        return addressStr.substring(4, 6)+addressStr.substring(2, 4) + addressStr.substring(0, 2);
     }
 
     public static String getInfoStr(int info, int length) {
