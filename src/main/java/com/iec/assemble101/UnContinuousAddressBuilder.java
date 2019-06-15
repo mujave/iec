@@ -28,6 +28,7 @@ public class UnContinuousAddressBuilder<T> extends VariableLengthPacket {
      */
     private int infoLength;
 
+    @Deprecated
     public UnContinuousAddressBuilder() {
         this(9, 0, 1, 0, 9, 2);//地址连续的报文
     }

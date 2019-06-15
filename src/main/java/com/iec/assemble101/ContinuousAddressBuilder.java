@@ -1,11 +1,8 @@
 package com.iec.assemble101;
 
 import com.iec.utils.Util;
-import sun.tools.tree.ThisExpression;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.function.Function;
 
@@ -33,7 +30,7 @@ public class ContinuousAddressBuilder<T> extends VariableLengthPacket {
      */
     private int infoLength;
 
-
+    @Deprecated
     public ContinuousAddressBuilder() {
         this(9, 100, 1, 100, 9, 100, 2);//地址连续的报文
     }
