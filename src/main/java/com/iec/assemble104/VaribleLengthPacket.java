@@ -11,7 +11,7 @@ public abstract class VaribleLengthPacket {
     /**
      * 控制域 4字节 三种格式
      */
-    int[] con = new int[4];
+    String  con;
     /**
      * 类型标识TI。
      * 可以提供已定义的 TypeIdentifier的code值；
@@ -46,7 +46,7 @@ public abstract class VaribleLengthPacket {
         this.SQ = SQ;
     }
 
-    public VaribleLengthPacket(int[] con, int TI, int SQ, int asduAddress, int transferReason ) {
+    public VaribleLengthPacket(String con, int TI, int SQ, int asduAddress, int transferReason ) {
         this.con = con;
         this.TI = TI;
         this.SQ = SQ;

@@ -28,15 +28,16 @@ public class ContinuousAddressBuilder<T> extends VaribleLengthPacket {
      */
     private ArrayList<T> infos;
 
+    @Deprecated
     public ContinuousAddressBuilder() {
-        this(new int[]{0, 0, 0, 0}, 1, 0, 1, 0, 0);
+        this("00000000", 1, 0, 1, 0, 0);
     }
 
-    public ContinuousAddressBuilder(int[] con, int TI, int asduAddress, int transferReason, int info_address, int infoLength) {
+    public ContinuousAddressBuilder(String con, int TI, int asduAddress, int transferReason, int info_address, int infoLength) {
         this(con, TI, asduAddress, transferReason, info_address, infoLength, -1);
     }
 
-    public ContinuousAddressBuilder(int[] con, int TI, int asduAddress, int transferReason, int info_address, int infoLength, int qualifier) {
+    public ContinuousAddressBuilder(String con, int TI, int asduAddress, int transferReason, int info_address, int infoLength, int qualifier) {
         super(con, TI, 1, asduAddress, transferReason);
         this.info_address = info_address;
         this.infoLength = infoLength;
@@ -44,7 +45,7 @@ public class ContinuousAddressBuilder<T> extends VaribleLengthPacket {
     }
 
 
-    public ContinuousAddressBuilder<T> buildCon(int[] con) {
+    public ContinuousAddressBuilder<T> buildCon(String con) {
         this.con = con;
         return this;
     }
@@ -103,7 +104,7 @@ public class ContinuousAddressBuilder<T> extends VaribleLengthPacket {
             messageLen += 7;
         }
         builder.append(String.format("%02X", messageLen));
-        Arrays.stream(con).forEach(x -> builder.append(String.format("%02X", x)));
+        builder.append(this.con);
         builder.append(String.format("%02X", this.TI));
         builder.append(String.format("%02X", (this.SQ << 7) + this.infos.size()));
         builder.append(String.format("%04X", this.transferReason));
