@@ -13,5 +13,4 @@
 完成101和194规约的解析（项目中的101规约只限平衡式报文解析。
 具体的规约文件请参照docs目录的文件。）
 ## 联系
-E-mail : mr.zhangyu.me@qq.cpm
-QQ : 1600351631
+E-mail : mr.zhangyu.me@qq.com
