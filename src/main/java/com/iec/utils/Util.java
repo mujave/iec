@@ -181,8 +181,8 @@ public class Util {
         StringBuilder builder = new StringBuilder();
         String infoFormat = "%0" + 2 * length + "X";
         String infoStr = String.format(infoFormat, info);
-        for (int i = 0; i < length; i++) {
-            builder.append(infoStr.substring(i * 2, (i + 1) * 2));
+        for (int i = infoStr.length()/2; i >0; i--) {
+            builder.append(infoStr.substring(2*i-2,2*i));
         }
         return builder.toString();
     }
