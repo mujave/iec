@@ -38,7 +38,7 @@ public class Analysis {
         contentbuilder.append("应用规约数据单元(APDU)长度[2 byte]:").append(msgArray[1]).append("字节").append("\n");
         contentbuilder.append("控制域[3 byte - 6 byte]：").append("\n").append(Control(new int[]{msgArray[2], msgArray[3], msgArray[4], msgArray[5]}));
 
-        if ((msgArray[2] & 0x03) != 3) {
+        if ((msgArray[2] & 0x03) != 3 && (msgArray[2] & 0x03) != 1) {
             //解析ASDU
             contentbuilder.append("*ASDU应用服务数据单元*\n");
             int asdu[] = new int[length - 6];
