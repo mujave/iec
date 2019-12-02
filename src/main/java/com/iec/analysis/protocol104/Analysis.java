@@ -71,7 +71,7 @@ public class Analysis {
                 } else if ((con[0] & 0xC0) == 64) {
                     conBuilder.append("\t链路测试TESTFR：命令\n");
                 }
-                if ((con[0] & 0x30) == 132) {
+                if ((con[0] & 0x30) == 32) {
                     conBuilder.append("\t断开数据传输STOPDT:确认\n");
                 } else if ((con[0] & 0x30) == 16) {
                     conBuilder.append("\t断开数据传输STOPDT：命令\n");
