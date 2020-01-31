@@ -2,17 +2,11 @@ package com.iec.test;
 
 import com.iec.analysis.exception.*;
 import com.iec.analysis.protocol101.Analysis;
-import com.iec.assemble101.ContinuousAddressBuilder;
 import com.iec.assemble101.UnContinuousAddressBuilder;
-import com.iec.assemble101.VariableLengthPacket;
-import com.iec.utils.Util;
 import org.junit.Test;
-import sun.util.resources.cldr.CalendarData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Analysis101Test {
 
@@ -126,7 +120,12 @@ public class Analysis101Test {
         unContinuousAddressBuilder.builderDateTime(new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss.SSS").parse("2016-03-03,10:25:58.778"));
         String builder = unContinuousAddressBuilder.builder();
         System.out.println(builder.toString());
-        System.out.println("68  12  12  68  D3  01  00  1E  01  03  01  00  21  00  01  9A  E5  19  0A  83  03  10  51  16".replaceAll(" ", ""));
+    UnContinuousAddressBuilder<Integer> unContinuousAddressBuilder2 = new UnContinuousAddressBuilder<>(211, 1, 30, 1, 3, 3);
+        unContinuousAddressBuilder2.addInfo(33, 12);
+        unContinuousAddressBuilder2.builderDateTime(new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss.SSS").parse("2016-03-03,10:25:58.778"));
+        String builder2 = unContinuousAddressBuilder2.builder();
+        System.out.println(builder2.toString());
+
     }
 
 
