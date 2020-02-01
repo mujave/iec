@@ -130,26 +130,21 @@ public class Util {
     /**
      * 检验CS校验和
      *
-     * @param vCS 需要检验的部分
+     * @param VCS 需要检验的部分
      * @param i   CS校验和
      * @return 检验结果（字符串格式）
      */
-    public static String variableCS(int[] vCS, int i) {
-        String str = "";
-        str += "校验和CS=";
-        str += toHexString(i);
+    public static boolean variableCS(int[] VCS, int i) {
+
         int sum = 0;
-        for (int j = 0; j < vCS.length; j++) {
-            sum += vCS[j];
+        for (int j = 0; j < VCS.length; j++) {
+            sum += VCS[j];
         }
         if ((sum % 256) == i) {
-            str += "   校验无误！";
-
+            return true;
         } else {
-            str += "   经校验，报文有误！";
+            return false;
         }
-        return str;
-
     }
 
     /**
@@ -181,8 +176,8 @@ public class Util {
         StringBuilder builder = new StringBuilder();
         String infoFormat = "%0" + 2 * length + "X";
         String infoStr = String.format(infoFormat, info);
-        for (int i = infoStr.length()/2; i >0; i--) {
-            builder.append(infoStr.substring(2*i-2,2*i));
+        for (int i = infoStr.length() / 2; i > 0; i--) {
+            builder.append(infoStr.substring(2 * i - 2, 2 * i));
         }
         return builder.toString();
     }

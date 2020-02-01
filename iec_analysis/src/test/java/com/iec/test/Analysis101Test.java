@@ -17,21 +17,24 @@ public class Analysis101Test {
         String analysis = null;
 
         try {
-            analysis = Analysis.analysis("10 49 01 00 4a 16".replaceAll(" ", ""));
+            analysis = Analysis.analysis("10 49 01 00 49 16".replaceAll(" ", ""));
+            System.out.println(analysis);
         } catch (LengthException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (UnknownTransferReasonException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (UnknownLinkCodeException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (CustomException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (UnknownTypeIdentifierException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (IllegalFormatException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
+        } catch (CsCheckException e) {
+            System.out.println(e.toString());
         }
-        System.out.println(analysis);
+
     }
 
 
@@ -39,21 +42,24 @@ public class Analysis101Test {
     public void VariableLengthFrameParsingTest() {
         String analysis = null;
         try {
-            analysis = Analysis.analysis("68  0f  0f  68  53  01  00  88  01  06  01  00  03  50  58  D4  44  40  80  67  16".replaceAll(" ", ""));
+            analysis = Analysis.analysis("68  0f  0f  68  53  01  00  88  01  06  01  00  03  50  58  D4  44  40  80  66  16".replaceAll(" ", ""));
+            System.out.println(analysis);
         } catch (LengthException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (CustomException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (UnknownLinkCodeException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (UnknownTransferReasonException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (UnknownTypeIdentifierException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } catch (IllegalFormatException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
+        } catch (CsCheckException e) {
+            System.out.println(e.toString());
         }
-        System.out.println(analysis);
+
     }
 
     @Test
@@ -120,14 +126,13 @@ public class Analysis101Test {
         unContinuousAddressBuilder.builderDateTime(new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss.SSS").parse("2016-03-03,10:25:58.778"));
         String builder = unContinuousAddressBuilder.builder();
         System.out.println(builder.toString());
-    UnContinuousAddressBuilder<Integer> unContinuousAddressBuilder2 = new UnContinuousAddressBuilder<>(211, 1, 30, 1, 3, 3);
+        UnContinuousAddressBuilder<Integer> unContinuousAddressBuilder2 = new UnContinuousAddressBuilder<>(211, 1, 30, 1, 3, 3);
         unContinuousAddressBuilder2.addInfo(33, 12);
         unContinuousAddressBuilder2.builderDateTime(new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss.SSS").parse("2016-03-03,10:25:58.778"));
         String builder2 = unContinuousAddressBuilder2.builder();
         System.out.println(builder2.toString());
 
     }
-
 
 
 }
