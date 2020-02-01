@@ -2,14 +2,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <artifactId>iec</artifactId>
-        <groupId>iec-analysis</groupId>
+        <groupId>com.mujave.iec</groupId>
         <version>2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>iec_interaction</artifactId>
+    <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.10.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mujave.iec</groupId>
+            <artifactId>iec_analysis</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+    </dependencies>
 
 
 </project>
