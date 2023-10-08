@@ -17,7 +17,7 @@ public class Analysis101Test {
         String analysis = null;
 
         try {
-            analysis = Analysis.analysis("10 49 01 00 49 16".replaceAll(" ", ""));
+            analysis = Analysis.analysis("10 49 01 00 4A 16".replaceAll(" ", ""));
             System.out.println(analysis);
         } catch (LengthException e) {
             System.out.println(e.toString());
@@ -42,7 +42,7 @@ public class Analysis101Test {
     public void VariableLengthFrameParsingTest() {
         String analysis = null;
         try {
-            analysis = Analysis.analysis("68  0f  0f  68  53  01  00  88  01  06  01  00  03  50  58  D4  44  40  80  66  16".replaceAll(" ", ""));
+            analysis = Analysis.analysis("68  0f  0f  68  53  01  00  88  01  06  01  00  03  50  58  D4  44  40  80  67  16".replaceAll(" ", ""));
             System.out.println(analysis);
         } catch (LengthException e) {
             System.out.println(e.toString());
